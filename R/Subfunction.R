@@ -950,7 +950,7 @@ est.phy.q <-  function(xx, LL, TT, n, q, rtreephy){ # proposed
   #ans = rep(0, length(q))
   if(q==0){
     ##chunyu revise##
-    ans = PD_obs + ifelse(g2>(g1*f2)/(2*f2), (n-1)/n*g1^2/(2*g2), (n-1)/n*g1*(f1-1)/(2*(f2+1)))
+    ans = PD_obs + ifelse((2*f2)*g2>(g1*f2), (n-1)/n*g1^2/(2*g2), (n-1)/n*g1*(f1-1)/(2*(f2+1)))
     #ans = PD_obs+ifelse(g2>0, (n-1)/n*g1^2/(2*g2), (n-1)/n*g1*(f1-1)/2*(f2-1))
   }else if(q==1){
     q1 = sum(sapply(1:(n-1), function(r) {(1-A)^r/r} ))
