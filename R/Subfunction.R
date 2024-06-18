@@ -535,9 +535,10 @@ hier.taxonomy_rel <- function(data, mat, q, weight = "size", nboot = 200, conf =
   }
   output <- lapply(q, sub) %>% do.call(rbind, .)
   
-  Order.q = rep(q, each = 24)
+  ##chunyu revise## number of value is 10*nrow(mat)-6
+  Order.q = rep(q, each = (10*nrow(mat)-6))
   
-  Method = rep(rownames(output)[1:24], length(q))
+  Method = rep(rownames(output)[1:(10*nrow(mat)-6)], length(q))
   
   output = cbind(Method, Order.q, output, Decomposition = "relative")
   
@@ -838,9 +839,10 @@ hier.taxonomy_abs <- function(data, mat, q, nboot = 200, conf = 0.95, type = "ml
   }
   output <- lapply(q, sub) %>% do.call(rbind, .)
   
-  Order.q = rep(q, each = 24)
+  ##chunyu revise## number of value is 10*nrow(mat)-6
+  Order.q = rep(q, each = (10*nrow(mat)-6))
   
-  Method = rep(rownames(output)[1:24], length(q))
+  Method = rep(rownames(output)[1:(10*nrow(mat)-6)], length(q))
   
   output = cbind(Method, Order.q, output, Decomposition = "absolute")
   
@@ -1048,7 +1050,8 @@ Boots.pop = function(data, rtree, tmp){
 
 bootstrap.q.Beta = function(data, mat, rtree, tmp, q, nboot, wij, type, method){
   H <- nrow(mat)
-  out = array(0, dim=c(8*H, length(q), nboot))
+  ##chunyu revise## number of value is 10*H-6
+  out = array(0, dim=c((10*H-6), length(q), nboot))
   pool <- rowSums(data)
   rtreephy <- newick2phylog(convToNewick(rtree))
   #if(datatype == "abundance"){

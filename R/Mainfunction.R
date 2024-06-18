@@ -158,9 +158,10 @@ hier.phylogeny <- function(data, mat, tree, q = seq(0, 2, 0.2), weight = "size",
     rownames(x) = rownames(est)
     return(x)}) %>% do.call(rbind,.)
     
-    Order.q = rep(q, each = 24)
+    ##chunyu revise## number of value is nrow(est) = 10*H-6
+    Order.q = rep(q, each = nrow(est))
     
-    Method = rep(rownames(out)[1:24], length(q))
+    Method = rep(rownames(out)[1:nrow(est)], length(q))
     
     rownames(out) = NULL
     
@@ -177,9 +178,10 @@ hier.phylogeny <- function(data, mat, tree, q = seq(0, 2, 0.2), weight = "size",
     colnames(x) = c("Estimator", "Bootstrap S.E.", "LCL", "UCL")
     return(x)}) %>% do.call(rbind,.)
     
-    Order.q = rep(q, each = 24)
+    Order.q = rep(q, each = nrow(est))
     
-    Method = rep(rownames(out)[1:24], length(q))
+    ##chunyu revise## number of value is nrow(est) = 10*H-6
+    Method = rep(rownames(out)[1:nrow(est)], length(q))
     
     rownames(out) = NULL
     
