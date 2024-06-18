@@ -1070,6 +1070,8 @@ bootstrap.q.Beta = function(data, mat, rtree, tmp, q, nboot, wij, type, method){
     for(j in 1:ncol(p)) boot.data[,j] = rmultinom(1,n[j],p[,j]) 
     rownames(boot.data) <- rownames(p)
     unseen = boot.data[-(1:S),]
+    ##chunyu revise##
+    if(is.vector(unseen)) unseen = matrix(unseen, nrow = 1) %>% `row.names<-`("u1")
     boot.data.obs <- boot.data[1:S,]
     #boot.data.obs <- boot.data.obs[rowSums(boot.data.obs)>0, ]
     #tip.boot <- names(rtreephy$leaves)[!names(rtreephy$leaves)%in%rownames(boot.data.obs)]
